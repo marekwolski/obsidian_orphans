@@ -56,14 +56,15 @@ def find_matches(filelist, pattern):
 if __name__ == "__main__":
     dotenv_path = find_dotenv("oo.env")
     config = dotenv_values(dotenv_path)
-    root_dir = config["VAULT_PATH"]
-    file_type = "*.md"  # Example: Find all MD files
+    vault_root_dir = config["VAULT_PATH"]
+    attach_dir = config["ATTACHMENTS_PATH"]
+    note_file_type = "*.md"  # Example: Find all MD files
     pattern = r"\[\[(.*?)(\.jpg|\.jpeg|\.png)(.*?)\]\]"
 
 # Seek through the Vault, finding all the note files
 # and look inside each one for links to image attachments
 
-    found_files = find_files(root_dir, file_type)
+    found_files = find_files(vault_root_dir, note_file_type)
     if found_files:
 #        print("Found files:")
          found_matches = find_matches(found_files, pattern)
@@ -72,9 +73,17 @@ if __name__ == "__main__":
             with open(f'links_report.txt', 'w') as linksfile:
                 for m in found_matches:
                     for inst in m:
-                        linksfile.write(str(inst))
-                        linksfile.write('\n\n')
+                        linksfile.write(f'{inst[0]}{inst[1]}\n')
                         #print(inst)
     else:
-        print("No files of type", file_type, "found in", root_dir)
+        print("No files of type", note_file_type, "found in", vault_root_dir)
+
+# Scan through the Attachments folders to find all the .jpg, .jpeg and .png files
+
+    jpg_files = find_files(attach_dir, '*.jpg')
+    jpeg_files = find_files(attach_dir, '*.jpeg')
+    png_files = find_files(attach_dir, '*.png')
+    image_files = jpg_files + jpeg_files + png_files
+    for i in image_files:
+        print(i)
 
