@@ -127,4 +127,4 @@ if __name__ == "__main__":
     with open(f'orphan_images_report.txt', 'w') as orphansfile:
         for i in C:
             orphansfile.write(f'{i}\n')
-    print(f'Found {len(C)} orphan image files today.')
+    print(f'Found {len(C)} orphan image files.')
