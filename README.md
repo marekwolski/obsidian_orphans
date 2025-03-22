@@ -6,7 +6,7 @@ However, when cleaning up these imported notes and particularly when deleting ir
 
 So this project is to write a tool that I can run to:
 1. report on image files in my attachments folder that are **not** referenced in any notes files in my vault.
-2. move orphans to another folder if I choose to (a sort of recycle bin in case I want to review and keep them).
+2. move orphaned images to another folder if I choose to (a sort of recycle bin in case I want to review and keep them).
 3. delete orphans (perhaps only from the recycle bin and if having been there for some time).
 
 So (1) will be the first milestone release, (2) the second and (3) the third.
